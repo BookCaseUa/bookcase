@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookCase - Compraventa de Libros</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    /* --- LOADER --- */
+    #loader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    }
+
+    .book {
+    width: 700px;
+    height: 420px;
+    perspective: 1500px;
+    position: relative;
+    }
+
+    .book-left,
+    .book-right {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: #ffffff;
+    border: 3px solid #2575fc;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transition: transform 1.5s ease;
+    border-radius: 6px;
+    }
+
+    .book-left {
+    left: 0;
+    transform-origin: left;
+    animation: flipLeft 3s ease forwards;
+    background: #2575fc;
+    }
+
+    .book-right {
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: flipRight 3s ease forwards;
+    }
+
+    .book-right img {
+    max-width: 80%;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fadeInLogo 2s ease forwards 1.6s;
+    }
+
+    .cover, .page {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+    .cover {
+      background: #2575fc;
+      z-index: 3;
+      transform-origin: left;
+      animation: flipCover 1.5s ease-in-out forwards 0.5s;
+    }
+    .page {
+      background: #fafafa;
+      z-index: 2;
+    }
+
+    @keyframes flipLeft {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(-180deg); }
+    }
+
+    @keyframes flipRight {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(0deg); } /* No rotación, solo reveal */
+    }
+
+    @keyframes fadeInLogo {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1.1); }
+    }
+
+    :root {
+      scroll-padding-top: 80px;
+      --bg-light: #f9f9ff;
+      --bg-dark: #121212;
+      --text-light: #333;
+      --text-dark: #f1f1f1;
+      --card-light: #ffffff;
+      --card-dark: #1e1e1e;
+      --primary: #2575fc;
+      --secondary: #6a11cb;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+      padding: 14px 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    body.dark-mode nav {
+      background: rgba(18, 18, 18, 0.85);
+    }
+    .nav-links a {
+      margin: 0 20px;
+      text-decoration: none;
+      color: inherit;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+    .toggle-theme {
+      position: absolute;
+      right: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    header {
+      background: linear-gradient(to right, #aa947f, #d9c8b4, #f7f3e9);
+      color: white; 
+      padding: 160px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .logo {
+      max-width: 260px;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+    header p {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      opacity: 0.95;
+    }
+    .cta-button {
+      background: white;
+      color: var(--primary);
+      padding: 15px 30px;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .cta-button:hover {
+      background: #eaeaea;
+      transform: scale(1.05);
+    }
+    img.banner {
+      max-width: 100%;
+      border-radius: 20px;
+      margin-top: 40px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+    section {
+      padding: 100px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 2.4rem;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .card {
+      background: var(--card-light);
+      padding: 30px;
+      border-radius: 16px;
+      width: 300px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      transition: background 0.3s, transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+    }
+    body.dark-mode .card {
+      background: var(--card-dark);
+    }
+    .card h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .testimonial {
+      background: var(--card-light);
+      border-left: 5px solid var(--secondary);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      transition: background 0.3s;
+    }
+    body.dark-mode .testimonial {
+      background: var(--card-dark);
+    }
+    footer {
+      background: #1c1c1c;
+      color: #aaa;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+    }
+    #top-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
+      z-index: 999;
+    }
+    #top-button:hover {
+      background: #1b4bcf;
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      .card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+    <!-- LOADER LIBRO CINEMÁTICO -->
+    <div id="loader">
+        <div class="book">
+        <div class="book-left"></div>
+        <div class="book-right">
+            <img src="logo.png" alt="Logo BookCase">
+        </div>
+        </div>
+        <audio id="bookSound" src="book-flip.mp3" preload="auto"></audio>
+        <button id="playButton" style="display: none;">Play</button>
+    </div>
+  
+    <!-- NAVBAR -->
+    <nav>
+      <div class="nav-links">
+        <a href="#descubre">¿Qué es?</a>
+        <a href="#publico">Usuarios</a>
+        <a href="#comparativa">Comparativa</a>
+        <a href="#testimonios">Opiniones</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <div class="toggle-theme" onclick="toggleTheme()" id="themeToggle">🌙</div>
+    </nav>
+  
+    <!-- HEADER -->
+    <header data-aos="fade-in">
+      <img src="logo.png" alt="Logo BookCase" class="logo">
+      <h1>Bienvenido a BookCase</h1>
+      <p>La nueva forma de comprar y vender libros de segunda mano, centrada en la simplicidad, la edición que buscas, y la mejor experiencia lectora.</p>
+      <img class="banner" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1000&q=80" alt="Libros vintage sobre una estantería">
+    <div class="cta-wrapper">
+      <button class="cta-button" onclick="window.location='#descubre'">Descubre cómo</button>
+    </div>
+    </header>
+  
+    <!-- SECCIONES -->
+    <section id="descubre">
+      <h2 class="section-title" data-aos="fade-up">¿Qué es BookCase?</h2>
+      <p data-aos="fade-up" data-aos-delay="100">
+        BookCase es una plataforma de compraventa de libros de segunda mano que permite a cualquier persona encontrar justo la edición que busca. En vez de buscar entre decenas de publicaciones, exploras directamente por ediciones (tapa dura, blanda, especial...).
+      </p>
+    </section>
+  
+    <section id="publico">
+      <h2 class="section-title" data-aos="fade-up">Para lectores, libreros y coleccionistas</h2>
+      <div class="cards">
+        <div class="card" data-aos="zoom-in">
+          <h3>Vendedores</h3>
+          <p>Publica tus libros en segundos, gana espacio en casa y algo de dinero extra.</p>
+        </div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="100">
+          <h3>Compradores</h3>
+          <p>Encuentra esa edición especial o ahorra en libros de segunda mano bien conservados.</p>
+        </div>
+        <div class="card" data-aos="zoom-in" data-aos-delay="200">
+          <h3>Librerías</h3>
+          <p>Digitaliza tu estantería y llega a más lectores sin necesidad de web propia.</p>
+        </div>
+      </div>
+    </section>
+  
+    <section id="comparativa">
+      <h2 class="section-title" data-aos="fade-up">¿Por qué no usar otras plataformas?</h2>
+      <div class="cards">
+        <div class="card" data-aos="flip-left">
+          <h3>Wallapop / eBay</h3>
+          <p>Desordenada, muchas publicaciones, difícil de comparar lo que realmente buscas.</p>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-delay="100">
+          <h3>Amazon</h3>
+          <p>No vende libros usados, y mucho menos ediciones específicas de segunda mano.</p>
+        </div>
+        <div class="card" data-aos="flip-left" data-aos-delay="200">
+          <h3>BookCase</h3>
+          <p>Busca por edición, compara precios, compra o vende fácilmente.</p>
+        </div>
+      </div>
+    </section>
+  
+    <section id="testimonios">
+      <h2 class="section-title" data-aos="fade-up">Lo que dicen nuestros usuarios</h2>
+      <div class="testimonials">
+        <div class="testimonial" data-aos="fade-up">
+          <p>"Por fin una app pensada para lectores de verdad, encontré una edición agotada que llevaba meses buscando."</p>
+          <span>Cristina I.</span>
+        </div>
+        <div class="testimonial" data-aos="fade-up" data-aos-delay="100">
+          <p>"Muy fácil de usar, en minutos tenía mis libros listados y al día siguiente vendí el primero."</p>
+          <span>Álvaro T.</span>
+        </div>
+        <div class="testimonial" data-aos="fade-up" data-aos-delay="200">
+          <p>"Como librería pequeña, esta plataforma me ha abierto a clientes nuevos sin esfuerzo ni inversión extra."</p>
+          <span>Librería El Bosque</span>
+        </div>
+      </div>
+    </section>
+  
+    <section id="contacto">
+      <h2 class="section-title" data-aos="fade-up">¿Te unes a la revolución lectora?</h2>
+      <p style="text-align: center" data-aos="fade-up" data-aos-delay="100">
+        Entra a nuestra aplicación (en desarrollo) o contáctanos para participar como tester.
+      </p>
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="cta-button" onclick="window.location='mailto:Uabookcase@gmail.com'">Contáctanos</button>
+      </div>
+    </section>
+  
+    <footer>
+      <p>&copy; 2025 BookCase - Proyecto desarrollado para TAES</p>
+    </footer>
+  
+    <!-- BOTÓN VOLVER ARRIBA -->
+    <button id="top-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+  
+    <!-- SCRIPTS -->
+    <script>
+        const sound = document.getElementById("bookSound");
+        const playButton = document.getElementById("playButton");
+
+        // 🌙 Cambiar tema
+        function toggleTheme() {
+          const body = document.body;
+          body.classList.toggle('dark-mode');
+          const isDark = body.classList.contains('dark-mode');
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+          document.getElementById('themeToggle').textContent = isDark ? '🌞' : '🌙';
+        }
+        
+        function tryPlaySound() {
+          sound.currentTime = 0;
+          sound.play().then(() => {
+            console.log("🔊 Sonido reproducido correctamente");
+            playButton.remove(); // eliminamos el botón invisible
+            document.removeEventListener("click", tryPlaySound);
+            document.removeEventListener("touchstart", tryPlaySound);
+          }).catch(err => {
+            console.warn("❌ Sonido bloqueado por el navegador:", err);
+          });
+        }
+      
+        // 🔊 Desbloquear sonido al primer clic o toque real
+        document.addEventListener("click", tryPlaySound, { once: true });
+        document.addEventListener("touchstart", tryPlaySound, { once: true });
+      
+        // 🎬 Animación del libro y ocultar loader
+        window.addEventListener("DOMContentLoaded", () => {
+          setTimeout(() => {
+            document.getElementById("loader").style.opacity = "0";
+            document.getElementById("loader").style.pointerEvents = "none";
+      
+            // AOS animaciones (activar justo al mostrar contenido)
+            AOS.init({ once: true });
+          }, 4000);
+        });
+      </script>      
+  </body>  
