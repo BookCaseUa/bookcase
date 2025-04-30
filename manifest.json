@@ -1,0 +1,15 @@
+{
+  "name": "BookCase",
+  "short_name": "BookCase",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f9f9ff",
+  "theme_color": "#2575fc",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
