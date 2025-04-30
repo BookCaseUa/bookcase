@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bookcaseua.github.io/bookcase/sitemap.xml
