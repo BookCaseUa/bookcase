@@ -24,7 +24,6 @@
 - [📄 Key Project Files](#-key-project-files)
 - [📈 Google Search Console](#-google-search-console)
 - [📲 Social Media Preview](#-social-media-preview)
-- [✨ Next Steps](#-next-steps-optional)
 
 ---
 
@@ -86,15 +85,6 @@ Search Console link:
 - ✅ Discord and Twitter show the preview image correctly
 - ⚠️ WhatsApp may take a few hours to update its cache
 - ✅ Facebook displays the correct preview after debugging
-
----
-
-## ✨ Next Steps (optional)
-
-- Add more pages (like `/thanks.html` or `/contact.html`)
-- Expand the `sitemap.xml` if more pages are added
-- Connect Google Analytics to monitor visitors
-- Add a language switch to support English and Spanish versions
 
 ---
 

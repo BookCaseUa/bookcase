@@ -24,7 +24,6 @@
 - [📄 Archivos importantes](#-archivos-importantes)
 - [📈 Google Search Console](#-google-search-console)
 - [📲 Vista previa en redes](#-vista-previa-en-redes)
-- [✨ Próximos pasos](#-próximos-pasos-opcional)
 
 ---
 
@@ -86,15 +85,6 @@ Enlace directo a la consola:
 - ✅ Discord y Twitter ya muestran la imagen correctamente
 - ⚠️ WhatsApp puede tardar unas horas en actualizar su caché
 - ✅ Facebook muestra correctamente tras forzar depuración
-
----
-
-## ✨ Próximos pasos (opcional)
-
-- Añadir más páginas (`/gracias.html`, `/contacto.html`, etc.)
-- Expandir `sitemap.xml` si se crean rutas nuevas
-- Conectar con Google Analytics para ver visitas reales
-- Añadir idioma inglés (`/en/`) con soporte multilingüe
 
 ---
 
