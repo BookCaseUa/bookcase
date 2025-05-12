@@ -159,6 +159,24 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
       transition: background 0.3s;
     }
+    .app-preview {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .app-preview img {
+      max-width: 100%;
+      height: auto;
+      width: 480px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+    .app-preview img:hover {
+      transform: scale(1.03);
+    }
     body.dark-mode .testimonial {
       background: var(--card-dark);
     }
@@ -194,6 +212,9 @@
       }
       .card {
         width: 100%;
+      }
+      .app-preview img {
+        width: 90%;
       }
     }
   </style>
@@ -260,6 +281,11 @@
       </p>
     </section>
   
+    <div data-aos="zoom-in" style="margin-top: 40px; text-align: center;">
+      <img src="https://i.ibb.co/nqnNV2sh/1.png" alt="Captura inicio BookCase" style="max-width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+      <p style="margin-top: 10px; font-style: italic; color: gray;">Pantalla de inicio de BookCase con carrusel y novedades</p>
+    </div>    
+
     <section id="publico">
       <h2 class="section-title" data-aos="fade-up">Para lectores, libreros y coleccionistas</h2>
       <div class="cards">
@@ -277,6 +303,11 @@
         </div>
       </div>
     </section>
+
+    <div data-aos="zoom-in-up" style="margin-top: 60px; text-align: center;">
+      <img src="https://i.ibb.co/HLSpZNwT/2.png" alt="Ranking libros vendidos" style="max-width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+      <p style="margin-top: 10px; font-style: italic; color: gray;">Ranking de libros más vendidos y ediciones destacadas</p>
+    </div>    
   
     <section id="comparativa">
       <h2 class="section-title" data-aos="fade-up">¿Por qué no usar otras plataformas?</h2>
@@ -296,6 +327,11 @@
       </div>
     </section>
   
+    <div data-aos="zoom-in" style="margin-top: 60px; text-align: center;">
+      <img src="https://i.ibb.co/Jh49NfG/3.png" alt="Búsqueda de libros" style="max-width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+      <p style="margin-top: 10px; font-style: italic; color: gray;">Buscador de libros y filtros por idioma, precio y condición</p>
+    </div>    
+
     <section id="testimonios">
       <h2 class="section-title" data-aos="fade-up">Lo que dicen nuestros usuarios</h2>
       <div class="testimonials">
@@ -312,8 +348,13 @@
           <span>Librería El Bosque</span>
         </div>
       </div>
-    </section>
+    </section> 
   
+    <div data-aos="fade-up" style="margin: 80px auto 20px; text-align: center;">
+      <img src="https://i.ibb.co/Zzx7xtVX/4.png" alt="Vista edición ofertas" style="max-width: 100%; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+      <p style="margin-top: 10px; font-style: italic; color: gray;">Vista de edición con detalles del libro y tabla de ofertas disponibles</p>
+    </div>
+    
     <section id="contacto">
       <h2 class="section-title" data-aos="fade-up">¿Te unes a la revolución lectora?</h2>
       <p style="text-align: center" data-aos="fade-up" data-aos-delay="100">
@@ -322,8 +363,8 @@
       <div style="text-align: center; margin-top: 20px;">
         <button class="cta-button" onclick="window.location='mailto:Uabookcase@gmail.com'">Contáctanos</button>
       </div>
-    </section>
-  
+    </section>   
+
     <footer>
       <p>&copy; 2025 BookCase - Proyecto desarrollado para TAES</p>
     </footer>
