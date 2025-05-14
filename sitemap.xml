@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Landing page principal -->
   <url>
     <loc>https://bookcaseua.github.io/bookcase/</loc>
     <priority>1.00</priority>
+  </url>
+
+  <!-- Aplicación Vue SPA -->
+  <url>
+    <loc>https://bookcaseua.github.io/bookcase/web/</loc>
+    <priority>0.80</priority>
   </url>
 </urlset>
