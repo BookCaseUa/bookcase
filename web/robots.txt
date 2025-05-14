@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rvbendcf.github.io/bookcase-application/sitemap.xml

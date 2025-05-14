@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Página principal -->
+  <url>
+    <loc>https://rvbendcf.github.io/bookcase-application/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Rutas públicas visibles -->
+  <url><loc>https://rvbendcf.github.io/bookcase-application/login</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/register</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/about</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/contacto</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/AdvSearch</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/libros-deseados</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/carrito</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/listaLibros</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/listaLibros2</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/search</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/politicas</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/addOffer</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/mis-ofertas</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/novedades</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/mis-ventas</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/mis-chats</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/mis-pedidos</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/mis-valoraciones</loc></url>
+
+  <!-- Rutas dinámicas genéricas -->
+  <url><loc>https://rvbendcf.github.io/bookcase-application/infoLibro/1</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/infoLibro/123</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/infoEdicion/456</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/perfil/123</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/chat/abc123</loc></url>
+  <url><loc>https://rvbendcf.github.io/bookcase-application/compareEditions/789</loc></url>
+
+</urlset>
